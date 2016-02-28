@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  django_site_nginx:
+    image: emarcs/nginx-uwsgi
+    ports:
+      - 8081:80
+    links:
+      - django_site_uwsgi:uwsgi_srv
+  django_site_uwsgi:
+    image: emarcs/django:latest
+    volumes:
+      - ./data:/srv/django/app

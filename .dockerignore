@@ -1,0 +1,8 @@
+.git/
+.gitignore
+README.md
+LICENSE
+data*
+data/
+venv*
+venv*/
