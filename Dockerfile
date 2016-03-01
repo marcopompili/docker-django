@@ -1,4 +1,4 @@
-FROM django:latest
+FROM django:1.9.2-python2
 
 MAINTAINER Marco Pompili <marcs.pompili@gmail.com>
 
