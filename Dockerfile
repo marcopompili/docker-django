@@ -1,10 +1,13 @@
-FROM django:latest
+FROM emarcs/python:2
 
 MAINTAINER Marco Pompili <marcs.pompili@gmail.com>
 
-RUN apt-get update && apt-get -q -y install libpcre3-dev
+RUN apt-get -q -q update && \
+    apt-get -q -y install libpcre3-dev
 
-RUN pip install uwsgi python-pcre
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN pip install uwsgi python-pcre django
 
 RUN useradd django
 
@@ -18,6 +21,4 @@ ENV DJANGO_SETTINGS_MODULE django_site.settings
 ENV UWSGI_HOST 0.0.0.0
 ENV UWSGI_PORT 8000
 
-COPY entrypoint.sh /usr/local/bin/
-
-ENTRYPOINT ["su", "django", "/usr/local/bin/entrypoint.sh"]
+COPY startup /etc/minit/

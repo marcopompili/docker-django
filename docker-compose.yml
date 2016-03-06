@@ -8,6 +8,6 @@ services:
     links:
       - django_site_uwsgi:uwsgi_srv
   django_site_uwsgi:
-    image: emarcs/django:latest
+    image: emarcs/django:py2
     volumes:
       - ./data:/srv/django/app

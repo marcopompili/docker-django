@@ -1,5 +1,7 @@
 # docker-django
 
+[![](https://badge.imagelayers.io/emarcs/django:py2.svg)](https://imagelayers.io/?images=emarcs/django:py2 'Get your own badge on imagelayers.io')
+
 Docker image for
 [Django](https://www.djangoproject.com/) production environments.
 
