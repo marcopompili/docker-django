@@ -1,6 +1,6 @@
 FROM emarcs/python:2
 
-MAINTAINER Marco Pompili <marcs.pompili@gmail.com>
+MAINTAINER Marco Pompili "docker@emarcs.org"
 
 RUN apt-get -q -q update && \
     apt-get -q -y install libpcre3-dev
