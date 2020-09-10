@@ -1,13 +1,11 @@
-FROM emarcs/python:2
+FROM python:3.8.5-buster
 
-LABEL Marco Pompili "docker@mg.odd.red"
+LABEL author Marco Pompili
+LABEL email "docker@mg.odd.red"
 
-RUN apt-get -q -q update && \
-    apt-get -q -y install libpcre3-dev
+COPY requirements.txt .
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN pip install uwsgi python-pcre django
+RUN pip install -r requirements.txt
 
 RUN useradd django
 
@@ -21,4 +19,7 @@ ENV DJANGO_SETTINGS_MODULE django_site.settings
 ENV UWSGI_HOST 0.0.0.0
 ENV UWSGI_PORT 8000
 
-COPY startup /etc/minit/
+COPY startup /usr/local/bin/startup
+
+CMD ["/usr/local/bin/startup"]
+
