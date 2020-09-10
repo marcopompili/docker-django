@@ -1,13 +1,18 @@
-version: '2'
+version: '3'
 
 services:
-  django_site_nginx:
+  gate:
+    container_name: django-test-gate
     image: emarcs/nginx-uwsgi
     ports:
       - 8081:80
     links:
-      - django_site_uwsgi:uwsgi_srv
-  django_site_uwsgi:
-    image: emarcs/django:py2
+      - app:uwsgi_srv
+  app:
+    container_name: django-test-app
+    image: emarcs/django
+    environment:
+      DJANGO_PROJECT_NAME: data
+      DJANGO_SETTINGS_MODULE: data.settings
     volumes:
       - ./data:/srv/django/app
